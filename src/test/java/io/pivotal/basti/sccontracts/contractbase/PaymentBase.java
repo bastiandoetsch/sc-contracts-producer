@@ -13,7 +13,7 @@ public class PaymentBase {
     @Autowired
     PaymentService paymentService;
 
-    void releasePayment(String paymentId, String amount, String currency) {
+    public void releasePayment(String paymentId, String amount, String currency) {
         paymentService.releasePayment(paymentId, new BigDecimal(amount), currency);
     }
 }
