@@ -11,7 +11,7 @@
     <groupId>io.pivotal.basti</groupId>
     <artifactId>sc-contracts-producer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sc-contracts-proucer</name>
+    <name>sc-contracts-producer</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -98,11 +98,29 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
                 <version>2.2.2.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>convert</goal>
+                            <goal>generateStubs</goal>
+                            <goal>generateTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
                 <extensions>true</extensions>
 
                 <configuration>
                     <packageWithBaseClasses>io.pivotal.basti.sccontracts.contractbase</packageWithBaseClasses>
                     <testFramework>JUNIT5</testFramework>
+                    <contractsMode>REMOTE</contractsMode>
+
+                    <contractsRepositoryUrl>git://git@github.com:bastiandoetsch/sc-contracts-contracts.git</contractsRepositoryUrl>
+                    <contractDependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>${project.artifactId}</artifactId>
+                        <version>0.0.1</version>
+                    </contractDependency>
                 </configuration>
 
             </plugin>
